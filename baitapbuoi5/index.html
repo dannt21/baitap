@@ -1,0 +1,200 @@
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        body {
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+        }
+        .content {
+            flex: 1;
+            background: #333;
+            padding: 12px;
+        }
+        .content.left {
+            border-right: 4px solid #fff;
+        }
+        .form-group {
+            width: 100%;
+            overflow: hidden;
+            margin: 4px 4px 4px 16px;
+        }
+        .label, .input {
+            float: left;
+        }
+        .label {
+            display: block;
+            width: 80px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .input {
+            padding: 4px 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            width: 220px;
+            height: 24px;
+        }
+
+        button {
+            padding: 8px 16px;
+            font-size: 16px;
+            margin: 12px 0 0 236px;
+        }
+        .student {
+            list-style: none;
+            float: left;
+            width: 216px;
+            background: #fff;
+            padding: 8px;
+            line-height: 24px;
+            margin: 4px 0 0 4px;
+            position: relative;
+        }
+        .student span {
+            font-weight: 600;
+        }
+        .student-delete {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 26px;
+            height: 26px;
+            border-radius: 100%;
+            background: #ccc;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .student-delete:hover {
+            cursor: pointer;
+            background: #999;
+        }
+
+
+    </style>
+
+    <script>
+
+        var students = [
+            {
+                name: 'Cao Viet Ha',
+                age: 14,
+                phone: 1234567890,
+                address: 'Ha Noi, Viet Nam'
+            }
+        ];
+
+
+        // document ready
+        function document_Ready() {
+            render();
+        }
+
+        function render() {
+            html='';
+            for(var i=0; i<students.length; i++){
+                var student = students[i];
+                html += "<li class='student'>";
+                html += "<p><span>Name:"+student.name+"</span>";
+                html += "<p><span>Age:"+student.age+"</span>";
+                html += "<p><span>Phone:"+student.phone+"</span>";
+                html += "<p><span>Address:"+student.address+"</span>";
+                html += '<i class="student-delete" onclick = "deleteStudent(' + i + ')">X</i>';
+            }
+            var student2 = document.getElementById('students');
+            student2.innerHTML = html;
+        }
+
+        function deleteStudent(student) {
+            students.splice(student,1);
+            render();
+        }
+        function add_Students() {
+            var name = document.getElementById('name').value;
+            var age = document.getElementById('age').value;
+            var phone = document.getElementById('phone').value;
+            var address = document.getElementById('address').value;
+            var student = {
+                name : name,
+                age :  age,
+                phone : phone,
+                address : address
+            };
+            students.push(student);
+            render();
+        }
+    </script>
+</head>
+<body onload="documentReady();">
+
+<div class="container">
+    <div class="content left">
+        <ul id="students">
+            <li class="student">
+                <p><span>Name:</span> Nguyen Van A</p>
+                <p><span>Age:</span> 14</p>
+                <p><span>Phone:</span> 1234567890</p>
+                <p><span>Address:</span> Ha Noi, Viet Nam</p>
+                <i class="student-delete">X</i>
+            </li>
+            <li class="student">
+                <p><span>Name:</span> Nguyen Van A</p>
+                <p><span>Age:</span> 14</p>
+                <p><span>Phone:</span> 1234567890</p>
+                <p><span>Address:</span> Ha Noi, Viet Nam</p>
+                <i class="student-delete">X</i>
+            </li>
+            <li class="student">
+                <p><span>Name:</span> Nguyen Van A</p>
+                <p><span>Age:</span> 14</p>
+                <p><span>Phone:</span> 1234567890</p>
+                <p><span>Address:</span> Ha Noi, Viet Nam</p>
+                <i class="student-delete">X</i>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="form-group">
+            <label class="label" for="">Name</label>
+            <input id="name" class="input" type="text" name="" value="">
+        </div>
+
+        <div class="form-group">
+            <label class="label" for="">Age</label>
+            <input id="age" class="input" type="text" name="" value="">
+        </div>
+
+        <div class="form-group">
+            <label class="label" for="">Phone</label>
+            <input id="phone" class="input" type="text" name="" value="">
+        </div>
+
+        <div class="form-group">
+            <label class="label" for="">Address</label>
+            <input id="address" class="input" type="text" name="" value="">
+        </div>
+
+        <div class="form-group">
+            <button type="button" name="button" id='create' onclick="add_Students();">Create</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
